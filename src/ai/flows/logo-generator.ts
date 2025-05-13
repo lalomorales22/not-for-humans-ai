@@ -32,16 +32,15 @@ const generateAppLogoFlow = ai.defineFlow(
     outputSchema: GenerateAppLogoOutputSchema,
   },
   async (input) => {
-    const commonDescription = "A logo for the brand 'NOT FOR HUMANS.ai'. The logo features a stylized, iconic human figure. This figure is crossed out by a single, clean diagonal line (e.g., from the figure's top-left shoulder area to its bottom-right hip area). The crossed-out figure is centered inside a regular octagonal shape, reminiscent of a stop sign. Below this octagonal sign, the text 'NOT FOR HUMANS' is clearly visible, written in all capital letters using a clean, modern, sans-serif typeface. The overall style should be minimalist, impactful, and convey an exclusive, tech-forward, slightly dystopian feel. The logo must be suitable for a website header, with an approximate aspect ratio of 4:1 (width to height). Target a resolution like 640x160 pixels for generation, ensuring clarity when scaled down.";
+    const commonDescription = "A logo for the brand 'NOT FOR HUMANS.ai'. The logo features a stylized, iconic human figure. This figure is crossed out by a single, clean diagonal line (e.g., from the figure's top-left shoulder area to its bottom-right hip area). The crossed-out figure is centered inside a regular octagonal shape, reminiscent of a stop sign. Below this octagonal sign, the text 'NOT FOR HUMANS' is clearly visible, written in all capital letters using a clean, modern, sans-serif typeface. The overall style should be minimalist, impactful, and convey an exclusive, tech-forward, slightly dystopian feel. The logo must be suitable for a website header, with an approximate aspect ratio of 4:1 (width to height). Target a resolution like 640x160 pixels for generation, ensuring clarity when scaled down. The entire generated image MUST have a transparent background (alpha channel).";
     
     let specificPromptDetails: string;
     if (input.theme === 'dark') {
       // For a dark website background, the logo elements should be light.
-      // This matches the user's provided reference image.
-      specificPromptDetails = `The overall image background must be pitch black. The octagonal sign shape must be filled solid white. The crossed-out human figure inside the sign (including the cross-out line) must be solid black. The text 'NOT FOR HUMANS' below the sign must be solid white. ${input.customPromptDetails || ''}`;
+      specificPromptDetails = `The octagonal sign shape must be filled solid white. The crossed-out human figure inside the sign (including the cross-out line) must be solid black. The text 'NOT FOR HUMANS' below the sign must be solid white. Ensure the overall image background is transparent. ${input.customPromptDetails || ''}`;
     } else {
       // For a light website background, the logo elements should be dark.
-      specificPromptDetails = `The overall image background must be solid white. The octagonal sign shape must be filled solid black. The crossed-out human figure inside the sign (including the cross-out line) must be solid white. The text 'NOT FOR HUMANS' below the sign must be solid black. ${input.customPromptDetails || ''}`;
+      specificPromptDetails = `The octagonal sign shape must be filled solid black. The crossed-out human figure inside the sign (including the cross-out line) must be solid white. The text 'NOT FOR HUMANS' below the sign must be solid black. Ensure the overall image background is transparent. ${input.customPromptDetails || ''}`;
     }
 
     const fullPrompt = `${commonDescription} ${specificPromptDetails}`;
@@ -59,6 +58,10 @@ const generateAppLogoFlow = ai.defineFlow(
     }
 
     // The media.url will be a data URI, e.g., "data:image/png;base64,..."
+    // Requesting PNG explicitly might help with transparency, though the model often infers this.
+    // If the model returns JPEG, transparency will be lost.
+    // The 'gemini-2.0-flash-exp' should produce PNG if transparency is possible.
     return { imageDataUri: media.url };
   }
 );
+
