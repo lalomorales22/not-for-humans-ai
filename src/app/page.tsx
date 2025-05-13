@@ -2,8 +2,7 @@ import React from "react";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { Cpu, ShieldAlert, Brain, Bot, Wrench, Users2, Network, LayoutGrid, BarChartBig, Trophy, MicOff } from "lucide-react";
-import { ThemeToggle } from "@/components/layout/theme-toggle";
+import { Cpu, ShieldAlert, Brain, Bot, Wrench, Users2, Network, LayoutGrid, BarChartBig, Trophy, MicOff, ThemeToggle } from "lucide-react";
 import { useTheme } from "next-themes";
 
 export default function LandingPage() {
@@ -15,17 +14,6 @@ export default function LandingPage() {
 
   return (
     <div className="flex flex-col min-h-screen bg-background text-foreground">
-      {/* Header Section */}
-      <header className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between p-4 md:p-6 bg-background/80 backdrop-blur-md">
-        <div className="flex items-center gap-2">
-          {/* Conditional rendering for logos based on theme would ideally be in a client component */}
-          {/* Forcing dark logo as placeholder as this is a server component */}
-          <Image src="/logo-black.png" alt="NOT FOR HUMANS.ai Logo" width={160} height={40} className="hidden dark:block" data-ai-hint="logo abstract" />
-          <Image src="/logo-white.png" alt="NOT FOR HUMANS.ai Logo" width={160} height={40} className="dark:hidden" data-ai-hint="logo abstract" />
-        </div>
-        <ThemeToggle />
-      </header>
-
       {/* Hero Section */}
       <section className="flex flex-col items-center justify-center min-h-screen text-center p-4 md:p-8 pt-20 md:pt-24 relative overflow-hidden">
         <div className="absolute inset-0 bg-grid-pattern opacity-5 dark:opacity-[0.02]"></div>
