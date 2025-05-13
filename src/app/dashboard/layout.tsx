@@ -12,6 +12,7 @@ import {
   LayoutGrid,
   MessagesSquare,
   BarChartBig,
+  Trophy, // Added Trophy icon
 } from 'lucide-react';
 
 import {
@@ -33,7 +34,7 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
             href="/dashboard"
             className="group flex h-9 w-9 shrink-0 items-center justify-center gap-2 rounded-full bg-primary text-lg font-semibold text-primary-foreground md:h-8 md:w-8 md:text-base"
           >
-            <AppLogo />
+            <AppLogo isCollapsed />
             <span className="sr-only">NOT FOR HUMANS.ai</span>
           </Link>
           <TooltipProvider>
@@ -84,6 +85,18 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
                 </Link>
               </TooltipTrigger>
               <TooltipContent side="right">Analytics</TooltipContent>
+            </Tooltip>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Link
+                  href="/dashboard/leaderboard"
+                  className="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
+                >
+                  <Trophy className="h-5 w-5" />
+                  <span className="sr-only">Leaderboard</span>
+                </Link>
+              </TooltipTrigger>
+              <TooltipContent side="right">Leaderboard</TooltipContent>
             </Tooltip>
           </TooltipProvider>
         </nav>

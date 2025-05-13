@@ -10,8 +10,8 @@
     --card-foreground: 240 10% 3.9%;
     --popover: 0 0% 100%;
     --popover-foreground: 240 10% 3.9%;
-    --primary: 240 10% 3.9%;
-    --primary-foreground: 0 0% 98%;
+    --primary: 240 10% 3.9%; /* Black for light mode primary */
+    --primary-foreground: 0 0% 98%; /* White for light mode primary text */
     --secondary: 0 0% 96.1%;
     --secondary-foreground: 240 10% 3.9%;
     --muted: 0 0% 96.1%;
@@ -42,24 +42,24 @@
   }
  
   .dark {
-    --background: 240 10% 3.9%;
-    --foreground: 0 0% 98%;
-    --card: 240 10% 3.9%;
+    --background: 0 0% 0%; /* Dark matter black */
+    --foreground: 0 0% 98%; /* White */
+    --card: 240 10% 3.9%; /* Kept as very dark grey for card distinction */
     --card-foreground: 0 0% 98%;
     --popover: 240 10% 3.9%;
     --popover-foreground: 0 0% 98%;
-    --primary: 0 0% 98%;
-    --primary-foreground: 240 10% 3.9%;
-    --secondary: 240 5% 15%;
+    --primary: 0 0% 98%; /* White for dark mode primary */
+    --primary-foreground: 240 10% 3.9%; /* Black for dark mode primary text */
+    --secondary: 240 3.7% 10.9%; /* Darker grey for secondary elements */
     --secondary-foreground: 0 0% 98%;
-    --muted: 240 5% 15%;
+    --muted: 240 3.7% 10.9%;
     --muted-foreground: 0 0% 63.9%;
-    --accent: 240 5% 25%;
+    --accent: 240 3.7% 15.9%; /* Slightly lighter grey for accents */
     --accent-foreground: 0 0% 98%;
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 0 0% 98%;
-    --border: 240 5% 15%;
-    --input: 240 5% 15%;
+    --border: 240 3.7% 10.9%;
+    --input: 240 3.7% 10.9%;
     --ring: 0 0% 83.1%;
 
     --chart-1: 220 70% 50%;
@@ -85,6 +85,22 @@
   }
   body {
     @apply bg-background text-foreground font-mono;
-    /* Monospaced font applied via tailwind config and layout class */
+  }
+}
+
+@layer utilities {
+  .animate-pulse-logo {
+    animation: pulse 2s infinite ease-in-out;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.7; transform: scale(1.05); }
+  }
+  .text-glow {
+    text-shadow: 0 0 5px hsl(var(--primary)), 0 0 10px hsl(var(--primary)), 0 0 15px hsl(var(--primary));
+  }
+  .neon-border {
+    border-color: hsl(var(--primary));
+    box-shadow: 0 0 5px hsl(var(--primary)), 0 0 10px hsl(var(--primary)/0.7), 0 0 15px hsl(var(--primary)/0.5);
   }
 }
