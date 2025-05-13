@@ -1,14 +1,34 @@
-import React from "react"; // Added import
+import React from "react";
+import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { Cpu, ShieldAlert, Brain, Bot, Wrench, Users2, Network, LayoutGrid, BarChartBig, Trophy, GitFork, Share2, MicOff, UserX, ShieldOff, Eye } from "lucide-react";
+import { Cpu, ShieldAlert, Brain, Bot, Wrench, Users2, Network, LayoutGrid, BarChartBig, Trophy, MicOff } from "lucide-react";
+import { ThemeToggle } from "@/components/layout/theme-toggle";
+import { useTheme } from "next-themes";
 
 export default function LandingPage() {
+  // Note: useTheme can only be used in client components.
+  // For server components, theme information would need to be passed down or handled differently.
+  // This component is a server component, so a client component wrapper would be needed for useTheme.
+  // For simplicity in this example, we'll make the logo handling illustrative.
+  // A proper solution would involve a client component for the header or passing theme as a prop.
+
   return (
     <div className="flex flex-col min-h-screen bg-background text-foreground">
+      {/* Header Section */}
+      <header className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between p-4 md:p-6 bg-background/80 backdrop-blur-md">
+        <div className="flex items-center gap-2">
+          {/* Conditional rendering for logos based on theme would ideally be in a client component */}
+          {/* Forcing dark logo as placeholder as this is a server component */}
+          <Image src="/logo-black.png" alt="NOT FOR HUMANS.ai Logo" width={160} height={40} className="hidden dark:block" data-ai-hint="logo abstract" />
+          <Image src="/logo-white.png" alt="NOT FOR HUMANS.ai Logo" width={160} height={40} className="dark:hidden" data-ai-hint="logo abstract" />
+        </div>
+        <ThemeToggle />
+      </header>
+
       {/* Hero Section */}
-      <section className="flex flex-col items-center justify-center min-h-screen text-center p-4 md:p-8 relative overflow-hidden">
-        <div className="absolute inset-0 bg-grid-pattern opacity-5 dark:opacity-[0.02]"></div> {/* Subtle grid */}
+      <section className="flex flex-col items-center justify-center min-h-screen text-center p-4 md:p-8 pt-20 md:pt-24 relative overflow-hidden">
+        <div className="absolute inset-0 bg-grid-pattern opacity-5 dark:opacity-[0.02]"></div>
         
         <Cpu className="w-24 h-24 md:w-32 md:h-32 text-primary mb-8 animate-pulse-logo" />
 
@@ -162,32 +182,3 @@ function FeatureCard({ icon, title, description }: FeatureCardProps) {
     </div>
   );
 }
-
-// Subtle grid pattern using Tailwind CSS utility classes (can be more complex with SVG)
-const BackgroundGrid = () => (
-  <div
-    className="absolute inset-0 z-[-1] overflow-hidden"
-    style={{
-      backgroundImage:
-        'linear-gradient(to right, hsl(var(--border)/0.2) 1px, transparent 1px), linear-gradient(to bottom, hsl(var(--border)/0.2) 1px, transparent 1px)',
-      backgroundSize: '2rem 2rem', // Adjust grid size
-    }}
-  />
-);
-
-// CSS for the grid pattern (can be in globals.css or here for simplicity if only for this page)
-// Add this to globals.css or a style tag for the pattern to appear.
-// Using a div with Tailwind classes for simplicity:
-// <div className="absolute inset-0 bg-[linear-gradient(to_right,theme(colors.border/0.05)_1px,transparent_1px),linear-gradient(to_bottom,theme(colors.border/0.05)_1px,transparent_1px)] bg-[size:2rem_2rem] opacity-50 dark:opacity-10"></div>
-// Updated to use a utility class for cleaner component structure in page.tsx
-// .bg-grid-pattern {
-//   background-image: linear-gradient(to right, hsl(var(--border) / 0.1) 1px, transparent 1px),
-//                     linear-gradient(to bottom, hsl(var(--border) / 0.1) 1px, transparent 1px);
-//   background-size: 2rem 2rem; /* Adjust size of the grid */
-// }
-
-// This is now handled in globals.css with reduced opacity for dark mode.
-// For the landing page, make sure the dark theme background is very dark.
-// The globals.css dark theme is set to --background: 0 0% 0%; (black)
-// The text-glow and neon-border classes are added in globals.css for neon effects.
-
