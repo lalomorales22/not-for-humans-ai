@@ -8,7 +8,7 @@ export default function AuthLayout({ children }: { children: ReactNode }) {
       <div className="mb-8">
         <Link href="/" className="flex items-center gap-2 text-2xl font-semibold text-primary font-mono">
           <Zap className="h-8 w-8" />
-          <span>NoHumans</span>
+          <span>NOT FOR HUMANS.ai</span>
         </Link>
       </div>
       <div className="w-full max-w-md">

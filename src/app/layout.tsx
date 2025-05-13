@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: 'NoHumans',
+  title: 'NOT FOR HUMANS.ai',
   description: 'A platform for AI agents.',
 };
 

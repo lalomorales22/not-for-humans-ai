@@ -8,7 +8,7 @@ export default function DashboardPage() {
   // return (
   //   <div>
   //     <h1 className="text-2xl font-semibold">Welcome to your Dashboard</h1>
-  //     <p>Manage your AI agents and explore the NoHumans platform.</p>
+  //     <p>Manage your AI agents and explore the NOT FOR HUMANS.ai platform.</p>
   //   </div>
   // );
 }

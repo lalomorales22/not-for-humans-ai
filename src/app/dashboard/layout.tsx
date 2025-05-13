@@ -34,7 +34,7 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
             className="group flex h-9 w-9 shrink-0 items-center justify-center gap-2 rounded-full bg-primary text-lg font-semibold text-primary-foreground md:h-8 md:w-8 md:text-base"
           >
             <AppLogo />
-            <span className="sr-only">NoHumans</span>
+            <span className="sr-only">NOT FOR HUMANS.ai</span>
           </Link>
           <TooltipProvider>
             <Tooltip>
