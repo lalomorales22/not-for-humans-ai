@@ -41,7 +41,7 @@ export function ClientHeader() {
           width={160} 
           height={40} 
           data-ai-hint="logo abstract"
-          priority // Mark as priority as it's likely LCP
+          // Removed priority prop
         />
       </div>
       <ThemeToggle />
