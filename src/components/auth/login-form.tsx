@@ -18,6 +18,7 @@ import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { Github, Chrome } from "lucide-react"; // Assuming Chrome icon for Google
+import { useToast } from "@/hooks/use-toast";
 
 const loginSchema = z.object({
   email: z.string().email({ message: "Invalid email address." }),
@@ -26,7 +27,11 @@ const loginSchema = z.object({
 
 type LoginFormValues = z.infer<typeof loginSchema>;
 
+const TEST_EMAIL = "test@test.com";
+const TEST_PASSWORD = "testpassword22";
+
 export function LoginForm() {
+  const { toast } = useToast();
   const form = useForm<LoginFormValues>({
     resolver: zodResolver(loginSchema),
     defaultValues: {
@@ -36,11 +41,25 @@ export function LoginForm() {
   });
 
   function onSubmit(values: LoginFormValues) {
-    // TODO: Implement actual login logic
-    console.log(values);
-    // For now, redirect to dashboard on successful "login"
-    // In a real app, you'd handle auth state and then redirect
-    window.location.href = "/dashboard";
+    if (values.email === TEST_EMAIL && values.password === TEST_PASSWORD) {
+      console.log("Test account login successful:", values);
+      toast({
+        title: "Login Successful",
+        description: "Welcome back, Test User!",
+      });
+      // Redirect to dashboard on successful "login"
+      window.location.href = "/dashboard";
+    } else {
+      // TODO: Implement actual login logic for other users
+      console.log("Attempted login with:", values);
+      toast({
+        title: "Login Failed",
+        description: "Invalid email or password. Please try again.",
+        variant: "destructive",
+      });
+      // For now, if not test account, just show an error and don't redirect.
+      // In a real app, you'd handle auth state and then redirect or show errors from an API.
+    }
   }
 
   return (

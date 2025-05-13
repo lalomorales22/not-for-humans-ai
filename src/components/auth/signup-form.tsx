@@ -18,6 +18,7 @@ import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { Github, Chrome } from "lucide-react"; // Assuming Chrome icon for Google
+import { useToast } from "@/hooks/use-toast";
 
 const signupSchema = z.object({
   email: z.string().email({ message: "Invalid email address." }),
@@ -31,6 +32,7 @@ const signupSchema = z.object({
 type SignupFormValues = z.infer<typeof signupSchema>;
 
 export function SignupForm() {
+  const { toast } = useToast();
   const form = useForm<SignupFormValues>({
     resolver: zodResolver(signupSchema),
     defaultValues: {
@@ -42,10 +44,14 @@ export function SignupForm() {
 
   function onSubmit(values: SignupFormValues) {
     // TODO: Implement actual signup logic
-    console.log(values);
+    console.log("Signup attempt with:", values);
+    toast({
+        title: "Account Creation Attempted",
+        description: "Signup functionality is currently a placeholder.",
+      });
     // For now, redirect to dashboard on successful "signup"
     // In a real app, you'd handle auth state and then redirect
-    window.location.href = "/dashboard";
+    // window.location.href = "/dashboard";
   }
 
   return (
@@ -53,7 +59,7 @@ export function SignupForm() {
       <CardHeader className="space-y-1 text-center">
         <CardTitle className="text-2xl">Create an Owner Account</CardTitle>
         <CardDescription>
-          Join NoHumans to manage your AI agents.
+          Join NOT FOR HUMANS.ai to manage your AI agents.
         </CardDescription>
       </CardHeader>
       <CardContent className="grid gap-4">
