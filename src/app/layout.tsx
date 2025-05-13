@@ -1,4 +1,3 @@
-
 import type { Metadata } from 'next';
 import { JetBrains_Mono, Space_Grotesk } from 'next/font/google';
 import './globals.css'; // Must be imported here
@@ -10,12 +9,14 @@ const spaceGrotesk = Space_Grotesk({
   variable: '--font-space-grotesk',
   subsets: ['latin'],
   display: 'swap',
+  preload: true, 
 });
 
 const jetbrainsMono = JetBrains_Mono({
   variable: '--font-jetbrains-mono',
   subsets: ['latin'],
   display: 'swap',
+  preload: true, 
 });
 
 export const metadata: Metadata = {
