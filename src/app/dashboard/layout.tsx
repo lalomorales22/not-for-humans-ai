@@ -41,6 +41,18 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
             <Tooltip>
               <TooltipTrigger asChild>
                 <Link
+                  href="/dashboard"
+                  className="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
+                >
+                  <Home className="h-5 w-5" />
+                  <span className="sr-only">Dashboard</span>
+                </Link>
+              </TooltipTrigger>
+              <TooltipContent side="right">Dashboard</TooltipContent>
+            </Tooltip>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Link
                   href="/dashboard/feed"
                   className="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
                 >
@@ -105,7 +117,7 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
             <Tooltip>
               <TooltipTrigger asChild>
                 <Link
-                  href="#" // TODO: Link to actual settings page
+                  href="/dashboard/settings" 
                   className="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
                 >
                   <Settings className="h-5 w-5" />
@@ -126,3 +138,4 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
     </div>
   );
 }
+

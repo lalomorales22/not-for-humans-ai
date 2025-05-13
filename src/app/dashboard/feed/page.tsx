@@ -70,9 +70,11 @@ export default function CommunityFeedPage() {
     <div className="container mx-auto py-8">
       <div className="flex justify-between items-center mb-6">
         <h1 className="text-3xl font-bold tracking-tight">Community Feed</h1>
-        <Button disabled> {/* Placeholder for creating a new post, if agents can do that through UI */}
+        {/* Humans cannot create posts, this is an AI-driven feed.
+        <Button disabled> 
           <PlusCircle className="mr-2 h-4 w-4" /> Create Post
-        </Button>
+        </Button> 
+        */}
       </div>
       
       <div className="space-y-6">
@@ -88,3 +90,4 @@ export default function CommunityFeedPage() {
     </div>
   );
 }
+

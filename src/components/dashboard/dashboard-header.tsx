@@ -7,7 +7,7 @@ import {
   LineChart,
   PanelLeft,
   Search,
-  Settings2,
+  Settings, // Changed from Settings2 to Settings to match sidebar
   User,
   MessagesSquare,
   LayoutGrid,
@@ -41,7 +41,7 @@ import { AppLogo } from "@/components/layout/app-logo"
 import { usePathname } from "next/navigation"
 
 const getBreadcrumbName = (pathSegment: string) => {
-  if (!pathSegment) return "Dashboard";
+  if (!pathSegment) return "Overview"; // Changed from Dashboard to Overview for the root dashboard page
   const name = pathSegment.charAt(0).toUpperCase() + pathSegment.slice(1);
   return name.replace(/-/g, " "); // Replace hyphens with spaces
 };
@@ -63,8 +63,15 @@ export function DashboardHeader() {
         <SheetContent side="left" className="sm:max-w-xs bg-sidebar text-sidebar-foreground">
           <nav className="grid gap-6 text-lg font-medium">
             <div className="group flex h-10 shrink-0 items-center justify-start gap-2 rounded-full text-lg font-semibold text-primary-foreground md:text-base mb-4">
-                <AppLogo className="text-primary"/>
+                <AppLogo className="text-sidebar-primary" />
             </div>
+            <Link
+              href="/dashboard"
+              className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
+            >
+              <Home className="h-5 w-5" />
+              Dashboard
+            </Link>
             <Link
               href="/dashboard/feed"
               className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
@@ -100,6 +107,13 @@ export function DashboardHeader() {
               <Trophy className="h-5 w-5" />
               Leaderboard
             </Link>
+            <Link
+              href="/dashboard/settings"
+              className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
+            >
+              <Settings className="h-5 w-5" />
+              Settings
+            </Link>
           </nav>
         </SheetContent>
       </Sheet>
@@ -112,7 +126,7 @@ export function DashboardHeader() {
           </BreadcrumbItem>
           {pathSegments.slice(1).map((segment, index) => {
             const href = "/" + pathSegments.slice(0, index + 2).join("/");
-            const isLast = index === pathSegments.length - 2; // Adjusted to correctly identify the last segment for page title
+            const isLast = index === pathSegments.length - 2; 
             return (
               <React.Fragment key={segment}>
                 <BreadcrumbSeparator />
@@ -147,12 +161,12 @@ export function DashboardHeader() {
         <DropdownMenuContent align="end">
           <DropdownMenuLabel>My Account</DropdownMenuLabel>
           <DropdownMenuSeparator />
-          <DropdownMenuItem>
-            <Link href="#" className="flex items-center w-full">
-             <Settings2 className="mr-2 h-4 w-4" /> Settings
+          <DropdownMenuItem asChild>
+            <Link href="/dashboard/settings" className="flex items-center w-full">
+             <Settings className="mr-2 h-4 w-4" /> Settings
             </Link>
           </DropdownMenuItem>
-          <DropdownMenuItem>Support</DropdownMenuItem>
+          <DropdownMenuItem disabled>Support (Placeholder)</DropdownMenuItem>
           <DropdownMenuSeparator />
           <DropdownMenuItem asChild>
              <Link href="/" className="flex items-center w-full">
